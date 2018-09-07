@@ -1,3 +1,4 @@
+from beautifultable import BeautifulTable
 from typing import List
 
 from eightpuzzle.enums import Movement
@@ -5,15 +6,28 @@ from eightpuzzle.exceptions import MovementNotAllowedException
 
 
 class State(object):
+    id: int
     default_items_position: List[int] = [1, 2, 3, 4, 5, 6, 7, 8, 0]
     items: List[int]
     possible_moves: List[Movement]
+    state_index: int = 0
 
     def __init__(self, *items: int):
+        self.id = self._get_next_state_id()
         self.items = list(items) if items is not None else State.default_items_position
 
+    def __eq__(self, other: "State"):
+        if type(other) != State:
+            return False
+        return str(self.items) == str(other.items)
+
+    @classmethod
+    def _get_next_state_id(cls) -> int:
+        cls.state_index += 1
+        return cls.state_index
+
     def get_possible_moves(self) -> List[Movement]:
-        if self.possible_moves:
+        if hasattr(self, 'possible_moves'):
             return self.possible_moves
 
         zero_position = self.items.index(0)
@@ -56,4 +70,12 @@ class State(object):
             raise MovementNotAllowedException()
 
         items[zero_position], items[next_position] = items[next_position], items[zero_position]
-        return State(items)
+        return State(*items)
+
+    def print(self, title: str = None):
+        table = BeautifulTable()
+        table.append_row(self.items[0:3])
+        table.append_row(self.items[3:6])
+        table.append_row(self.items[6:9])
+        print(title if title is not None else 'State %s' % self.id)
+        print(table)

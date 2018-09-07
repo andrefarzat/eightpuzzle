@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ff17477d-2532-45b3-981d-56ed72962da0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eightpuzzle/enums.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eightpuzzle/exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/init.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/andrefarzat.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eightpuzzle/searches.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eightpuzzle/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/eightpuzzle/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eightpuzzle/enums.py" beforeDir="false" afterPath="$PROJECT_DIR$/eightpuzzle/enums.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eightpuzzle/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/eightpuzzle/exceptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init.py" beforeDir="false" afterPath="$PROJECT_DIR$/init.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,44 +36,48 @@
         <counts>
           <entry key="project.closed" value="2" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1878" />
+          <entry key="py" value="4318" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1878" />
+          <entry key="Python" value="4318" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="3" />
+          <entry key="gitignore" value="1" />
+          <entry key="py" value="5" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="3" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Python" value="5" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eightpuzzle/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="40" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+            <state relative-caret-position="1035">
+              <caret line="69" column="27" lean-forward="true" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
-                <marker date="1536359268360" expanded="true" signature="1061:1120" ph="..." />
+                <element signature="e#0#41#0" expanded="true" />
+                <marker date="1536363451669" expanded="true" signature="169:171" ph="..." />
+                <marker date="1536363451669" expanded="true" signature="561:676" ph="..." />
+                <marker date="1536363451669" expanded="true" signature="728:794" ph="..." />
+                <marker date="1536363451669" expanded="true" signature="1462:1521" ph="..." />
               </folding>
             </state>
           </provider>
@@ -81,8 +86,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eightpuzzle/enums.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+            <state relative-caret-position="180">
+              <caret line="12" column="19" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,24 +98,48 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/eightpuzzle/exceptions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
               <folding>
-                <marker date="1536358084529" expanded="true" signature="47:52" ph="..." />
+                <marker date="1536362847621" expanded="true" signature="106:111" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/init.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="50" lean-forward="true" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+                <marker date="1536364065137" expanded="true" signature="94:284" ph="..." />
+                <marker date="1536364065137" expanded="true" signature="283:284" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/init.py">
+        <entry file="file://$PROJECT_DIR$/eightpuzzle/searches.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+            <state relative-caret-position="465">
+              <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
-                <marker date="1536357389675" expanded="true" signature="86:200" ph="..." />
+                <element signature="e#0#29#0" expanded="true" />
+                <marker date="1536364050986" expanded="true" signature="235:443" ph="..." />
+                <marker date="1536364050986" expanded="true" signature="475:476" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/beautifultable/beautifultable.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="160" column="8" selection-start-line="160" selection-start-column="8" selection-end-line="160" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -121,6 +153,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>venv</find>
+      <find>MovementNotAllowedException</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -128,10 +166,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/init.py" />
         <option value="$PROJECT_DIR$/eightpuzzle/exceptions.py" />
         <option value="$PROJECT_DIR$/eightpuzzle/enums.py" />
         <option value="$PROJECT_DIR$/eightpuzzle/__init__.py" />
+        <option value="$PROJECT_DIR$/eightpuzzle/searches.py" />
+        <option value="$PROJECT_DIR$/init.py" />
       </list>
     </option>
   </component>
@@ -177,6 +216,11 @@
               <item name="eightpuzzle" type="b2602c69:ProjectViewProjectNode" />
               <item name="eightpuzzle" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="eightpuzzle" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eightpuzzle" type="462c0819:PsiDirectoryNode" />
+              <item name="eightpuzzle" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -215,8 +259,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="38" y="51" width="1344" height="782" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985507" visible="true" weight="0.2642089" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985507" visible="true" weight="0.26804915" />
       <window_info id="Structure" order="1" sideWeight="0.5014493" side_tool="true" weight="0.26036867" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -253,41 +298,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eightpuzzle/__init__.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="40" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+        <state relative-caret-position="320">
+          <caret line="87" column="5" lean-forward="true" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/beautifultable/beautifultable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="160" column="8" selection-start-line="160" selection-start-column="8" selection-end-line="160" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eightpuzzle/exceptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <marker date="1536359268360" expanded="true" signature="1061:1120" ph="..." />
+            <marker date="1536362847621" expanded="true" signature="106:111" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/eightpuzzle/enums.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        <state relative-caret-position="180">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eightpuzzle/exceptions.py">
+    <entry file="file://$PROJECT_DIR$/eightpuzzle/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        <state relative-caret-position="1035">
+          <caret line="69" column="27" lean-forward="true" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
           <folding>
-            <marker date="1536358084529" expanded="true" signature="47:52" ph="..." />
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1536363451669" expanded="true" signature="169:171" ph="..." />
+            <marker date="1536363451669" expanded="true" signature="561:676" ph="..." />
+            <marker date="1536363451669" expanded="true" signature="728:794" ph="..." />
+            <marker date="1536363451669" expanded="true" signature="1462:1521" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eightpuzzle/searches.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="21" lean-forward="true" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1536364050986" expanded="true" signature="235:443" ph="..." />
+            <marker date="1536364050986" expanded="true" signature="475:476" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/init.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        <state relative-caret-position="90">
+          <caret line="6" column="50" lean-forward="true" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <marker date="1536357389675" expanded="true" signature="86:200" ph="..." />
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1536364065137" expanded="true" signature="94:284" ph="..." />
+            <marker date="1536364065137" expanded="true" signature="283:284" ph="..." />
           </folding>
         </state>
       </provider>
