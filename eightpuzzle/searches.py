@@ -133,27 +133,33 @@ class HillClimbingSearch(Search):
             if self.current_state == self.final_state:
                 break
 
-            has_found_better = False
-            current_state_fitness = self.evaluate(self.current_state)
-            for neighbor in self.get_neighborhood(self.current_state):
-                if neighbor == self.current_state:
-                    continue
-
-                neighbor_fitness = self.evaluate(neighbor)
-
-                if neighbor_fitness <= current_state_fitness:
-                    self.current_state = neighbor
-                    current_state_fitness = neighbor_fitness
-                    has_found_better = True
-
-            if not has_found_better:
-                break
+            neighbor, _ = self.get_best_of_neighborhood(self.current_state)
+            self.current_state = neighbor
 
         return self.current_state
 
     @staticmethod
     def get_neighborhood(state: State) -> List[State]:
         return [state.move(m) for m in state.get_possible_moves()]
+
+    def get_best_of_neighborhood(self, state: State) -> (State, int):
+        current: State = None
+        current_fitness = 0
+
+        for neighbor in self.get_neighborhood(state):
+            if hasattr(state, 'parent') and neighbor == state.parent:
+                continue
+
+            neighbor_fitness = self.evaluate(neighbor)
+
+            if current is None:
+                current = neighbor
+                current_fitness = neighbor_fitness
+            elif neighbor_fitness < current_fitness:
+                current = neighbor
+                current_fitness = neighbor_fitness
+
+        return current, current_fitness
 
     def evaluate(self, state: State) -> int:
         fitness = 0
