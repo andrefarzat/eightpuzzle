@@ -1,6 +1,7 @@
 from typing import List
 from eightpuzzle import State
-from eightpuzzle.searches import InteractiveSearch, DepthFirstSearch, BreadthFirstSearch
+from eightpuzzle.searches import (
+    InteractiveSearch, DepthFirstSearch, BreadthFirstSearch, HillClimbingSearch)
 
 
 def main():
@@ -12,9 +13,11 @@ def main():
 
     # search = InteractiveSearch(initial_state, final_state)
     # search = DepthFirstSearch(initial_state, final_state)
-    search = BreadthFirstSearch(initial_state, final_state)
+    # search = BreadthFirstSearch(initial_state, final_state)
+    search = HillClimbingSearch(initial_state, final_state)
+
+    import ipdb; ipdb.set_trace()
     state = search.do_search()
-    # import pdb; pdb.set_trace()
     print_finish(state)
 
 

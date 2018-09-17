@@ -5,6 +5,13 @@ from eightpuzzle.enums import Movement
 from eightpuzzle.exceptions import MovementDoesNotExistException, MovementNotAllowedException
 
 
+class SearchResult(object):
+    def __init__(self, found: bool, state: State = None, states: List[State] = None):
+        self.found: bool = found
+        self.state: Optional[State] = state
+        self.states: Optional[List[State]] = states
+
+
 class Search(object):
     current_state: State
     final_state: State
@@ -68,7 +75,7 @@ class DepthFirstSearch(Search):
 class BreadthFirstSearch(Search):
     def do_search(self):
         states: List[State] = [self.current_state]
-        
+
         while True:
             result = self.search_in_states(states)
 
@@ -108,8 +115,51 @@ class BreadthFirstSearch(Search):
         return SearchResult(False, states=ret_states)
 
 
-class SearchResult(object):
-    def __init__(self, found: bool, state: State = None, states: List[State] = None):
-        self.found: bool = found
-        self.state: Optional[State] = state
-        self.states: Optional[List[State]] = states
+class HillClimbingSearch(Search):
+    fitness_point_map = {
+        0: [4, 3, 2, 3, 2, 1, 2, 1, 0],
+        1: [0, 1, 2, 1, 2, 3, 2, 3, 4],
+        2: [1, 0, 1, 2, 1, 2, 3, 2, 3],
+        3: [2, 1, 0, 3, 2, 1, 4, 3, 2],
+        4: [1, 2, 3, 0, 1, 2, 1, 2, 3],
+        5: [2, 1, 2, 1, 0, 1, 2, 1, 2],
+        6: [3, 2, 1, 2, 1, 0, 3, 2, 1],
+        7: [2, 3, 4, 1, 2, 3, 0, 1, 2],
+        8: [3, 2, 3, 2, 1, 2, 1, 0, 1],
+    }
+
+    def do_search(self) -> State:
+        while True:
+            if self.current_state == self.final_state:
+                break
+
+            has_found_better = False
+            current_state_fitness = self.evaluate(self.current_state)
+            for neighbor in self.get_neighborhood(self.current_state):
+                if neighbor == self.current_state:
+                    continue
+
+                neighbor_fitness = self.evaluate(neighbor)
+
+                if neighbor_fitness <= current_state_fitness:
+                    self.current_state = neighbor
+                    current_state_fitness = neighbor_fitness
+                    has_found_better = True
+
+            if not has_found_better:
+                break
+
+        return self.current_state
+
+    @staticmethod
+    def get_neighborhood(state: State) -> List[State]:
+        return [state.move(m) for m in state.get_possible_moves()]
+
+    def evaluate(self, state: State) -> int:
+        fitness = 0
+        for i, point in enumerate(state.items):
+            point_map = self.fitness_point_map[point]
+            distance = point_map[i]
+            fitness += distance
+
+        return fitness
