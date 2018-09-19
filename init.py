@@ -1,7 +1,12 @@
-from typing import List
+from typing import List, Type
+
 from eightpuzzle import State
-from eightpuzzle.searches import (
-    InteractiveSearch, DepthFirstSearch, BreadthFirstSearch, HillClimbingSearch)
+from eightpuzzle.searches import (InteractiveSearch, DepthFirstSearch, BreadthFirstSearch, HillClimbingSearch,
+                                  AStarSearch, Search)
+
+
+SEARCHES: List[Type[Search]] = [InteractiveSearch, DepthFirstSearch, BreadthFirstSearch, HillClimbingSearch,
+                                AStarSearch]
 
 
 def main():
@@ -12,25 +17,22 @@ def main():
 
     final_state = State([1, 2, 3, 4, 5, 6, 7, 8, 0])
 
-    # search = InteractiveSearch(initial_state, final_state)
-    # search = DepthFirstSearch(initial_state, final_state)
-    # search = BreadthFirstSearch(initial_state, final_state)
-    search = HillClimbingSearch(initial_state, final_state)
+    search_class = get_search_class()
+    search = search_class(initial_state, final_state)
 
-    # import ipdb; ipdb.set_trace()
+    print('')
+    initial_state.print('Initial state: ')
+    final_state.print('Final state: ')
+    input('Press enter to start')
+    print('')
+
     state = search.do_search()
     print_finish(state)
 
 
 def print_finish(state: State):
     print('')
-    parents: List[State] = []
-    current_state: State = state
-
-    while current_state.parent:
-        current_state = current_state.parent
-        parents.append(current_state)
-
+    parents: List[State] = state.get_parents()
     parents.reverse()
 
     for i, parent in enumerate(parents):
@@ -39,5 +41,28 @@ def print_finish(state: State):
     state.print("Found state:")
 
 
+def get_search_class() -> Type[Search]:
+    while True:
+        for i, search in enumerate(SEARCHES):
+            print("%s: %s" % (i, search.__name__))
+
+        try:
+            index = int(input('Informe qual busca utilizar: '))
+        except ValueError:
+            print('Opção inválida')
+            continue
+
+        try:
+            s = SEARCHES[index]
+        except IndexError:
+            print('Opção inválida')
+            continue
+
+        return s
+
+
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except RecursionError:
+        print('Infinity loop')

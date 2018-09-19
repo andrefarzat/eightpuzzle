@@ -12,7 +12,8 @@ class State(object):
     items: List[int]
     possible_moves: List[Movement]
     state_index: int = 0
-    parent: "State"
+    parent: "State" = None
+    fitness: int
 
     def __init__(self, items: List[int], parent: "State" = None):
         self.id = self._get_next_state_id()
@@ -83,3 +84,13 @@ class State(object):
         table.append_row(self.items[6:9])
         print(title if title is not None else 'State %s' % self.id)
         print(table)
+
+    def get_parents(self) -> List["State"]:
+        parents: List["State"] = []
+
+        state = self
+        while state.parent:
+            parents.append(state.parent)
+            state = state.parent
+
+        return parents

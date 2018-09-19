@@ -5,6 +5,19 @@ from eightpuzzle.enums import Movement
 from eightpuzzle.exceptions import MovementDoesNotExistException, MovementNotAllowedException
 
 
+FITNESS_POINT_MAP = {
+    0: [4, 3, 2, 3, 2, 1, 2, 1, 0],
+    1: [0, 1, 2, 1, 2, 3, 2, 3, 4],
+    2: [1, 0, 1, 2, 1, 2, 3, 2, 3],
+    3: [2, 1, 0, 3, 2, 1, 4, 3, 2],
+    4: [1, 2, 3, 0, 1, 2, 1, 2, 3],
+    5: [2, 1, 2, 1, 0, 1, 2, 1, 2],
+    6: [3, 2, 1, 2, 1, 0, 3, 2, 1],
+    7: [2, 3, 4, 1, 2, 3, 0, 1, 2],
+    8: [3, 2, 3, 2, 1, 2, 1, 0, 1],
+}
+
+
 class SearchResult(object):
     def __init__(self, found: bool, state: State = None, states: List[State] = None):
         self.found: bool = found
@@ -73,7 +86,7 @@ class DepthFirstSearch(Search):
 
 
 class BreadthFirstSearch(Search):
-    def do_search(self):
+    def do_search(self) -> State:
         states: List[State] = [self.current_state]
 
         while True:
@@ -116,18 +129,6 @@ class BreadthFirstSearch(Search):
 
 
 class HillClimbingSearch(Search):
-    fitness_point_map = {
-        0: [4, 3, 2, 3, 2, 1, 2, 1, 0],
-        1: [0, 1, 2, 1, 2, 3, 2, 3, 4],
-        2: [1, 0, 1, 2, 1, 2, 3, 2, 3],
-        3: [2, 1, 0, 3, 2, 1, 4, 3, 2],
-        4: [1, 2, 3, 0, 1, 2, 1, 2, 3],
-        5: [2, 1, 2, 1, 0, 1, 2, 1, 2],
-        6: [3, 2, 1, 2, 1, 0, 3, 2, 1],
-        7: [2, 3, 4, 1, 2, 3, 0, 1, 2],
-        8: [3, 2, 3, 2, 1, 2, 1, 0, 1],
-    }
-
     def do_search(self) -> State:
         while True:
             if self.current_state == self.final_state:
@@ -140,16 +141,21 @@ class HillClimbingSearch(Search):
 
     @staticmethod
     def get_neighborhood(state: State) -> List[State]:
-        return [state.move(m) for m in state.get_possible_moves()]
+        states: List[State] = []
+        for movement in state.get_possible_moves():
+            neighbor = state.move(movement)
+
+            if hasattr(state, 'parent') and neighbor == state.parent:
+                continue
+            states.append(neighbor)
+
+        return states
 
     def get_best_of_neighborhood(self, state: State) -> (State, int):
         current: State = None
         current_fitness = 0
 
         for neighbor in self.get_neighborhood(state):
-            if hasattr(state, 'parent') and neighbor == state.parent:
-                continue
-
             neighbor_fitness = self.evaluate(neighbor)
 
             if current is None:
@@ -161,11 +167,45 @@ class HillClimbingSearch(Search):
 
         return current, current_fitness
 
-    def evaluate(self, state: State) -> int:
+    @staticmethod
+    def evaluate(state: State) -> int:
         fitness = 0
         for i, point in enumerate(state.items):
-            point_map = self.fitness_point_map[point]
+            point_map = FITNESS_POINT_MAP[point]
             distance = point_map[i]
             fitness += distance
 
         return fitness
+
+
+class AStarSearch(Search):
+    open_list: List[State] = []
+    closed_list = []
+
+    def do_search(self) -> State:
+        self.open_list.append(self.current_state)
+
+        while True:
+            state = self.open_list.pop(0)
+            if state == self.final_state:
+                break
+
+            states = self.get_next_states(state)
+            self.open_list.extend(states)
+            self.open_list.sort(key=lambda x: x.fitness)
+
+        return state
+
+    def get_next_states(self, state: State) -> List[State]:
+        states = HillClimbingSearch.get_neighborhood(state)
+        g = len(state.get_parents())
+
+        for neighbor in states:
+            neighbor.fitness = self.evaluate(neighbor) + g
+
+        return states
+
+    @staticmethod
+    def evaluate(state: State) -> int:
+        return HillClimbingSearch.evaluate(state)
+
