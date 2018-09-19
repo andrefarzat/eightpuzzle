@@ -2,11 +2,11 @@ from typing import List, Type
 
 from eightpuzzle import State
 from eightpuzzle.searches import (InteractiveSearch, DepthFirstSearch, BreadthFirstSearch, HillClimbingSearch,
-                                  AStarSearch, Search)
+                                  HillClimbingWithAnnealingSearch, AStarSearch, Search)
 
 
 SEARCHES: List[Type[Search]] = [InteractiveSearch, DepthFirstSearch, BreadthFirstSearch, HillClimbingSearch,
-                                AStarSearch]
+                                HillClimbingWithAnnealingSearch, AStarSearch]
 
 
 def main():
@@ -27,7 +27,11 @@ def main():
     print('')
 
     state = search.do_search()
-    print_finish(state)
+
+    if not state:
+        print('Fail :(')
+    else:
+        print_finish(state)
 
 
 def print_finish(state: State):

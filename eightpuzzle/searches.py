@@ -130,14 +130,22 @@ class BreadthFirstSearch(Search):
 
 class HillClimbingSearch(Search):
     def do_search(self) -> State:
+        current: State = self.current_state
+        current_fitness: int = self.evaluate(current)
+
         while True:
-            if self.current_state == self.final_state:
+            if current == self.final_state:
                 break
 
-            neighbor, _ = self.get_best_of_neighborhood(self.current_state)
-            self.current_state = neighbor
+            neighbor, neighbor_fitness = self.get_best_of_neighborhood(self.current_state)
 
-        return self.current_state
+            if neighbor_fitness < current_fitness:
+                current = neighbor
+            else:
+                current.print('Best local:')
+                break
+
+        return current
 
     @staticmethod
     def get_neighborhood(state: State) -> List[State]:
@@ -176,6 +184,18 @@ class HillClimbingSearch(Search):
             fitness += distance
 
         return fitness
+
+
+class HillClimbingWithAnnealingSearch(HillClimbingSearch):
+    def do_search(self) -> State:
+        while True:
+            if self.current_state == self.final_state:
+                break
+
+            neighbor, _ = self.get_best_of_neighborhood(self.current_state)
+            self.current_state = neighbor
+
+        return self.current_state
 
 
 class AStarSearch(Search):

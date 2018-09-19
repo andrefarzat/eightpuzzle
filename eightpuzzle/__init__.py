@@ -50,7 +50,7 @@ class State(object):
             moves.append(Movement.left)
 
         self.possible_moves = moves
-        shuffle(self.possible_moves)
+        # shuffle(self.possible_moves)
         return self.possible_moves
 
     def is_move_possible(self, movement: Movement) -> bool:
