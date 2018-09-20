@@ -1,6 +1,5 @@
 from beautifultable import BeautifulTable
 from typing import List
-from random import shuffle
 
 from eightpuzzle.enums import Movement
 from eightpuzzle.exceptions import MovementNotAllowedException
@@ -14,6 +13,7 @@ class State(object):
     state_index: int = 0
     parent: "State" = None
     fitness: int
+    count: int = 0
 
     def __init__(self, items: List[int], parent: "State" = None):
         self.id = self._get_next_state_id()
@@ -23,6 +23,7 @@ class State(object):
     def __eq__(self, other: "State"):
         if type(other) != State:
             return False
+        # print("%s == %s: %s" % (str(self.items), str(other.items), str(self.items) == str(other.items)))
         return str(self.items) == str(other.items)
 
     @classmethod
@@ -50,7 +51,6 @@ class State(object):
             moves.append(Movement.left)
 
         self.possible_moves = moves
-        # shuffle(self.possible_moves)
         return self.possible_moves
 
     def is_move_possible(self, movement: Movement) -> bool:
@@ -59,6 +59,8 @@ class State(object):
     def move(self, movement: Movement) -> "State":
         if not self.is_move_possible(movement):
             raise MovementNotAllowedException()
+
+        State.count += 1
 
         items = self.items.copy()
         zero_position = items.index(0)

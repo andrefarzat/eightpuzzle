@@ -56,7 +56,7 @@ class InteractiveSearch(Search):
         movement_names = [m.name for m in possible_movements]
 
         while True:
-            print('Possible moviments: ', movement_names)
+            print('Possible movements: ', movement_names)
             movement_name = input('Type next movement: ')
             try:
                 return Movement.get_by_name(movement_name)
